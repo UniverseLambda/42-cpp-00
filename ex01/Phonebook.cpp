@@ -30,23 +30,23 @@ namespace cpp01 {
 		std::string darkestSecret;
 		Contact result;
 
-		if (!askField("first name", firstName)) {
+		if (!askField("First name", firstName)) {
 			return false;
 		}
 
-		if (!askField("last name", lastName)) {
+		if (!askField("Last name", lastName)) {
 			return false;
 		}
 
-		if (!askField("nickname", nickname)) {
+		if (!askField("Nickname", nickname)) {
 			return false;
 		}
 
-		if (!askField("phone number", phoneNumber)) {
+		if (!askField("Phone number", phoneNumber)) {
 			return false;
 		}
 
-		if (!askField("darkest secret", darkestSecret)) {
+		if (!askField("Darkest secret", darkestSecret)) {
 			return false;
 		}
 
@@ -64,6 +64,11 @@ namespace cpp01 {
 
 		std::cout << "Woops. It seems that we cannot add more contact because this mac doesn't know how to properly handle memory :(" << std::endl;
 		std::cout << "But you can sacrifice the contact of one of your dearest and closest friends to add this one" << std::endl;
+
+		std::cout << "Current contacts in phonebook:" << std::endl;
+		for (std::size_t i = 0; i < mLimit; ++i) {
+			std::cout << "- " << i << ": " << mContacts[i].getFirstName() << std::endl;
+		}
 
 		if (!readIndex("Please choose one (or type 9 to cancel the operation): ", index, mLimit)) {
 			return false;
@@ -167,6 +172,10 @@ namespace cpp01 {
 			getline(std::cin, tmp);
 			if (std::cin.eof()) {
 				return false;
+			}
+
+			if (tmp.empty()) {
+				continue;
 			}
 
 			for (std::size_t i = 0; i < tmp.size(); ++i) {
