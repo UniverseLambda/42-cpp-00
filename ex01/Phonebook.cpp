@@ -8,6 +8,7 @@
 #include "Phonebook.hpp"
 
 #include <iostream>
+#include <iomanip>
 #include <cctype>
 
 #include <sstream>
@@ -89,11 +90,11 @@ namespace cpp01 {
 		for (std::size_t i = 0; i < mLimit; ++i) {
 			Contact &c = mContacts[i];
 
-			std::cout << '|' << "         " << (i + 1);
+			std::cout << '|' << std::setw(10) << std::setprecision(10) << (i + 1);
 			std::cout << '|' << toColumnData(c.getFirstName());
 			std::cout << '|' << toColumnData(c.getLastName());
 			std::cout << '|' << toColumnData(c.getNickname());
-			std::cout << '|' << std::endl;
+			std::cout << '|' << std::setw(0) << std::setprecision(0) << std::endl;
 		}
 
 		if (!readIndex("Select a contact (or type 9 to cancel the operation): ", index, mLimit)) {
